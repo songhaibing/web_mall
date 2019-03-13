@@ -53,12 +53,14 @@
       position: absolute;
       left: 0;
       background: #fff;
+      max-width: 1000px;
     }
     .launch_form {
       z-index: 1;
       position: absolute;
       width: 100%;
       color: #fff;
+      max-width: 1000px;
 
       .hang_around_wrapper {
         pointer-events: none;

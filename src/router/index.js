@@ -12,7 +12,7 @@ export default new Router({
       component: resolve => require(['@/view/launch/launch'], resolve)
     },
     {
-      // 首页
+      // 登录
       path: '/login',
       name: 'login',
       component: resolve => require(['@/view/login/login'], resolve)

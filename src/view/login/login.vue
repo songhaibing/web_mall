@@ -13,11 +13,11 @@
       <div class="login_form_body">
         <div class="logo">VR眼</div>
         <div class="slogan">
-          <span>立即使用111</span>
-          <span>立即使用111</span>
+          <span>立即使用</span>
+          <span>立即使用</span>
         </div>
       </div>
-      <router-link class="use_now" tag="div" to="/">立即使用111</router-link>
+      <router-link class="use_now" tag="div" to="/">立即使用</router-link>
     </div>
   </div>
 </template>
