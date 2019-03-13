@@ -21,13 +21,14 @@
           <div class="login_label">验证码</div>
           <div class="auth_code">
             <input class="login_input" maxlength="6" v-model="authCode">
-            <div @click="getAuth()" class="get_auth">获取验证码</div>
+            <div @click="getAuth()" class="get_auth" v-show="sendAuthCode">获取验证码</div>
+            <div class="get_auth" v-show="!sendAuthCode">{{authTime}}</div>
           </div>
         </div>
       </div>
-      <div @click="loginSubmit()" class="login_submit">登录</div>
+      <div :class="{'login_submit': true, 'able_login': canLogin}" @click="loginSubmit()">登录</div>
       <div class="login_tip" v-if="login_type === 1">未注册手机验证后自动登录</div>
-      <div class="login_tip" v-else @click="changePassword">忘记密码</div>
+      <div @click="changePassword" class="login_tip" v-else>忘记密码</div>
     </div>
     <div class="login_bottom_tip">
       注册即代表同意VR眼
@@ -43,37 +44,48 @@
     name: "login",
     data() {
       return {
-        clientSize: {
-          Height: 667,
-          Width: 375
-        },
         login_type: 1, // 1为密码登录   2为免密登录
-        phoneNumber: "",
+        phoneNumber: "13330079275",
         password: "",
-        authCode: ""
+        authCode: "",
+        sendAuthCode: true,
+        authTime: 60,
+        canLogin: true
       };
     },
     methods: {
       getAuth() {
         console.log(this.phoneNumber.length);
-        if (this.phoneNumber.length === 11) {
-          console.log("64");
-          // return;
+        if (this.phoneNumber.length !== 11) {
+          this.$Tip("请输入正确的手机号");
+          return;
         }
+        this.sendAuthCode = false;
+        var auth_timetimer = setInterval(() => {
+          this.authTime--;
+          if (this.authTime <= 0) {
+            this.sendAuthCode = true;
+            this.authTime = 60;
+            clearInterval(auth_timetimer);
+          }
+        }, 1000);
         this.$HTTP.get(
-          this.HOST+this.$API.getCode,
+          this.HOST + this.$API.getCode,
           { type: 2, phone: this.phoneNumber },
           res => {
             console.log(res);
           }
         );
       },
-      changePassword(){
-        this.$router.push('/password')
+      changePassword() {
+        this.$router.push("/password");
       },
       loginSubmit() {
         if (this.login_type === 1) {
           // 免密登录
+
+          if (this.canLogin) {
+          }
         } else {
           // 密码登录
         }
@@ -93,6 +105,7 @@
   .login {
     padding: 0.5rem;
     color: #333333;
+
     .login_h {
       display: flex;
       justify-content: space-between;
@@ -136,11 +149,11 @@
             background: rgba(220, 49, 52, 1);
             border-radius: 0.42rem;
             font-size: 0.28rem;
-            background: rgba(220, 49, 52, 1);
             color: rgba(255, 255, 255, 1);
             display: flex;
             justify-content: center;
             align-items: center;
+            opacity: 1;
           }
         }
       }
@@ -159,6 +172,9 @@
         color: #fff;
         margin-left: 50%;
         transform: translateX(-50%);
+      }
+      .able_login {
+        opacity: 1;
       }
       .login_tip {
         font-size: 0.24rem;

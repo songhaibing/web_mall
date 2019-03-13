@@ -45,6 +45,7 @@ HTTP.post = function(url, data, callback) {
       if (res.data.status === 10000) {
         callback(res.data.data);
       } else {
+        tip(res.data.message);
         // alert(ERROR_CODE[res.data.status]);
       }
     })
@@ -69,6 +70,7 @@ HTTP.get = function(url, data, callback) {
       if (res.data.status === 10000) {
         callback(res.data.data);
       } else {
+        tip(res.data.message);
         // alert(ERROR_CODE[res.data.status]);
       }
     })
