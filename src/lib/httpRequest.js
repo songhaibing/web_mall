@@ -14,13 +14,13 @@ const tip = msg => {
   });
 };
 // 环境的切换
-if (process.env.NODE_ENV == 'development') {
-  axios.defaults.baseURL = 'https://vryan.v5kg.com/index.php/mobile'; //开发环境
-} else if (process.env.NODE_ENV == 'debug') {
-  axios.defaults.baseURL = ''; //测试环境
-} else if (process.env.NODE_ENV == 'production') {
-  axios.defaults.baseURL = 'http://api.123dailu.com/'; //生产环境
-}
+// if (process.env.NODE_ENV == 'development') {
+//   axios.defaults.baseURL = 'https://vryan.v5kg.com/index.php/mobile'; //开发环境
+// } else if (process.env.NODE_ENV == 'debug') {
+//   axios.defaults.baseURL = ''; //测试环境
+// } else if (process.env.NODE_ENV == 'production') {
+//   axios.defaults.baseURL = 'http://api.123dailu.com/'; //生产环境
+// }
 
 // 请求超时时间
 axios.defaults.timeout = 10000;

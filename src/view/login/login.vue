@@ -61,7 +61,7 @@
           // return;
         }
         this.$HTTP.get(
-          this.$API.getCode,
+          this.HOST+this.$API.getCode,
           { type: 2, phone: this.phoneNumber },
           res => {
             console.log(res);

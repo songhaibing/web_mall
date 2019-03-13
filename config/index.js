@@ -12,8 +12,7 @@ module.exports = {
     proxyTable: {
       '/api': {
         target: 'https://vryan.v5kg.com/index.php/mobile',
-        changeOringe: true,
-        secure: false,
+        changeOrigin: true,
         pathRewrite: {
           '/api': ''
         }
