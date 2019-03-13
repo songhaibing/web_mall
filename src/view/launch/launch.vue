@@ -61,14 +61,14 @@
       width: 100%;
       color: #fff;
       max-width: 1000px;
-
+      pointer-events: none;
       .hang_around_wrapper {
-        pointer-events: none;
         position: relative;
         display: flex;
         justify-content: flex-end;
         margin-right: 0.35rem;
         .hang_around {
+          pointer-events: all;
           width: 1.37rem;
           height: 0.46rem;
           border: 1px solid #fff;
@@ -81,7 +81,6 @@
         }
       }
       .launch_form_body {
-        pointer-events: none;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -105,6 +104,7 @@
         }
       }
       .use_now {
+        pointer-events: all;
         font-size: 0.36rem;
         border: 2px solid rgba(255, 255, 255, 1);
         border-radius: 0.35rem;

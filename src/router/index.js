@@ -4,6 +4,7 @@ import Router from 'vue-router';
 Vue.use(Router);
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       // 首页
@@ -16,6 +17,12 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: resolve => require(['@/view/login/login'], resolve)
+    },
+    {
+      // 忘记密码
+      path: '/password',
+      name: 'password',
+      component: resolve => require(['@/view/password/password'], resolve)
     }
   ]
 });
