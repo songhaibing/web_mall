@@ -9,7 +9,16 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      '/api': {
+        target: 'https://vryan.v5kg.com/index.php/mobile',
+        changeOringe: true,
+        secure: false,
+        pathRewrite: {
+          '/api': ''
+        }
+      }
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST

@@ -11,21 +11,26 @@
       <div class="login_b_form">
         <div>
           <div class="login_label">手机号</div>
-          <input class="login_input" v-model="phoneNumber">
+          <input
+            class="login_input"
+            oninput="if(value.length>11)value=value.slice(0,11)"
+            type="number"
+            v-model="phoneNumber"
+          >
         </div>
         <div v-if="login_type === 2">
           <div class="login_label">密码</div>
-          <input class="login_input" v-model="password">
+          <input class="login_input" type="password" v-model="password">
         </div>
         <div v-else>
           <div class="login_label">验证码</div>
           <div class="auth_code">
             <input class="login_input" maxlength="6" v-model="authCode">
-            <div class="get_auth">获取验证码</div>
+            <div @click="getAuth()" class="get_auth">获取验证码</div>
           </div>
         </div>
       </div>
-      <div class="login_submit">登录</div>
+      <div @click="loginSubmit()" class="login_submit">登录</div>
       <div class="login_tip" v-if="login_type === 1">未注册手机验证后自动登录</div>
       <div class="login_tip" v-else>忘记密码</div>
     </div>
@@ -53,7 +58,31 @@
         authCode: ""
       };
     },
-    mounted() {
+    methods: {
+      getAuth() {
+        console.log(this.phoneNumber.length);
+        if (this.phoneNumber.length === 11) {
+          console.log("64");
+          // return;
+        }
+        this.$HTTP.get(
+          this.$API.getCode,
+          { type: 2, phone: this.phoneNumber },
+          res => {
+            console.log(res);
+          }
+        );
+      },
+      loginSubmit() {
+        if (this.login_type === 1) {
+          // 免密登录
+        } else {
+          // 密码登录
+        }
+      }
+    },
+    mounted() {},
+    created() {
       this.clientSize = {
         Height: document.documentElement.clientHeight,
         Width: document.documentElement.clientWidth
