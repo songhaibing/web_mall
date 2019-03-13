@@ -1,23 +1,39 @@
 <template>
   <div class="login">
-    <iframe
-      :height="clientSize.Height"
-      :width="clientSize.Width"
-      class="login_iframe"
-      src="https://vr.chinavryan.com/p/561acf1bb77699d0?1552448984000"
-    ></iframe>
-    <div :style="{ height: clientSize.Height + 'px', width: clientSize.Width + 'px'}" class="login_form">
-      <div class="hang_around_wrapper">
-        <div class="hang_around">先逛逛</div>
-      </div>
-      <div class="login_form_body">
-        <div class="logo">VR眼</div>
-        <div class="slogan">
-          <span>立即使用</span>
-          <span>立即使用</span>
+    <div class="login_h">
+      <router-link class="iconfont icon-guanbi" tag="span" to="/"></router-link>
+      <span @click="login_type = 2" v-if="login_type === 1">密码登录</span>
+      <span @click="login_type = 1" v-else>免密登录</span>
+    </div>
+    <div class="login_b">
+      <div class="login_b_title" v-if="login_type === 1">免密登录</div>
+      <div class="login_b_title" v-else>密码登录</div>
+      <div class="login_b_form">
+        <div>
+          <div class="login_label">手机号</div>
+          <input class="login_input" v-model="phoneNumber">
+        </div>
+        <div v-if="login_type === 2">
+          <div class="login_label">密码</div>
+          <input class="login_input" v-model="password">
+        </div>
+        <div v-else>
+          <div class="login_label">验证码</div>
+          <div class="auth_code">
+            <input class="login_input" maxlength="6" v-model="authCode">
+            <div class="get_auth">获取验证码</div>
+          </div>
         </div>
       </div>
-      <router-link class="use_now" tag="div" to="/">立即使用</router-link>
+      <div class="login_submit">登录</div>
+      <div class="login_tip" v-if="login_type === 1">未注册手机验证后自动登录</div>
+      <div class="login_tip" v-else>忘记密码</div>
+    </div>
+    <div class="login_bottom_tip">
+      注册即代表同意VR眼
+      <span>用户协议</span>
+      和
+      <span>隐私政策</span>
     </div>
   </div>
 </template>
@@ -30,7 +46,11 @@
         clientSize: {
           Height: 667,
           Width: 375
-        }
+        },
+        login_type: 1, // 1为密码登录   2为免密登录
+        phoneNumber: "",
+        password: "",
+        authCode: ""
       };
     },
     mounted() {
@@ -44,75 +64,92 @@
 
 <style lang="less" scoped>
   .login {
-    font-size: 0.14rem;
-    position: relative;
-    height: 100%;
-
-    .login_iframe {
-      border-width: 0;
-      position: absolute;
-      left: 0;
-      background: #fff;
-    }
-    .login_form {
-      z-index: 1;
-      position: absolute;
-      width: 100%;
-      color: #fff;
-      pointer-events: none;
-      .hang_around_wrapper {
-        position: relative;
-        display: flex;
-        justify-content: flex-end;
-        margin-right: 0.35rem;
-        .hang_around {
-          width: 1.37rem;
-          height: 0.46rem;
-          border: 1px solid #fff;
-          font-size: 0.26rem;
-          border-radius: 0.23rem;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          margin: 0.47rem 0.35rem 0 0;
-        }
+    padding: 0.5rem;
+    color: #333333;
+    .login_h {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .icon-guanbi {
+        font-size: 0.22rem;
       }
-      .login_form_body {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 1.8rem;
-        .logo {
-          font-size: 0.63rem;
-          font-weight: 400;
+      span:last-child {
+        font-size: 0.3rem;
+      }
+    }
+    .login_b {
+      margin-top: 1rem;
+      padding: 0.3rem;
+      position: relative;
+      .login_b_title {
+        font-size: 0.52rem;
+      }
+      .login_b_form {
+        margin-top: 0.98rem;
+        .login_label {
+          font-size: 0.36rem;
+          margin-bottom: 0.41rem;
         }
-
-        .slogan {
-          font-size: 0.3rem;
-          font-weight: 400;
-          margin-top: 0.46rem;
-          width: 3.49rem;
-          height: 0.29rem;
-          display: flex;
-          justify-content: space-between;
-          span {
-            letter-spacing: 0.1rem;
+        .login_input {
+          margin-bottom: 0.31rem;
+          width: 5.76rem;
+          height: 0.84rem;
+          border: 0.02rem solid rgba(220, 49, 52, 1);
+          border-radius: 0.42rem;
+          padding: 0 0.42rem;
+        }
+        .auth_code {
+          position: relative;
+          .get_auth {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 2rem;
+            height: 0.84rem;
+            background: rgba(220, 49, 52, 1);
+            border-radius: 0.42rem;
+            font-size: 0.28rem;
+            background: rgba(220, 49, 52, 1);
+            color: rgba(255, 255, 255, 1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
           }
         }
       }
-      .use_now {
-        font-size: 0.36rem;
-        border: 2px solid rgba(255, 255, 255, 1);
-        border-radius: 0.35rem;
-        width: 2.6rem;
-        height: 0.7rem;
+      .login_submit {
+        margin-top: 0.37rem;
+        width: 4.15rem;
+        height: 0.84rem;
+        background: rgba(220, 49, 52, 1);
+        border: 0.01rem solid rgba(255, 63, 83, 1);
+        opacity: 0.6;
+        border-radius: 0.42rem;
         display: flex;
         justify-content: center;
         align-items: center;
+        font-size: 0.38rem;
+        color: #fff;
         margin-left: 50%;
         transform: translateX(-50%);
-        position: absolute;
-        bottom: 1.05rem;
+      }
+      .login_tip {
+        font-size: 0.24rem;
+        color: rgba(178, 178, 178, 1);
+        text-align: center;
+        margin-top: 0.47rem;
+      }
+    }
+    .login_bottom_tip {
+      font-size: 0.2rem;
+      color: #b2b2b2;
+      position: fixed;
+      bottom: 0.57rem;
+      text-align: center;
+      width: 100%;
+      margin-left: -0.5rem;
+      span {
+        text-decoration: underline;
       }
     }
   }
