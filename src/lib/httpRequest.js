@@ -1,35 +1,35 @@
 'use strict'
 import axios from 'axios'
-import IP from './address'
 import qs from 'qs'
+import { Toast } from 'vant';
+/**
+ * 提示函数
+ * 禁止点击蒙层、显示一秒后关闭
+ */
+const tip = msg => {
+  Toast({
+    message: msg,
+    duration: 1000,
+    forbidClick: true
+  });
+}
+// 环境的切换
+if (process.env.NODE_ENV == 'development') {
+  axios.defaults.baseURL = '/api';//开发环境
+} else if (process.env.NODE_ENV == 'debug') {
+  axios.defaults.baseURL = '';//测试环境
+} else if (process.env.NODE_ENV == 'production') {
+  axios.defaults.baseURL = 'http://api.123dailu.com/';//生产环境
+}
+
+// 请求超时时间
+axios.defaults.timeout = 10000;
+
 
 
 let HTTP = {}
 // 使用由axios库提供的配置的默认值来创建axios实例
 let instance = axios.create()
-
-// 添加请求拦截器
-/*let beforeRequest = instance.interceptors.request.use(function (config) {
-  // 在发送请求之前做些什么
-  return config
-}, function (error) {
-  // 对请求错误做些什么
-  return Promise.reject(error)
-})
-
-// 添加响应拦截器
-let beforeResponse = instance.interceptors.response.use(function (response) {
-  // 对响应数据做点什么
-  return response
-}, function (error) {
-  // 对响应错误做点什么
-  return Promise.reject(error)
-})*/
-
-// 移除请求前置拦截器
-// axios.interceptors.request.eject(beforeRequest);
-// 移除相应前置拦截器
-// axios.interceptors.request.eject(beforeResponse);
 
 
 /**
@@ -41,7 +41,7 @@ let beforeResponse = instance.interceptors.response.use(function (response) {
  */
 HTTP.post = function (url, data, callback) {
   let params = qs.stringify(data)
-  instance.post(IP + url, params)
+  instance.post(url, params)
     .then(function (res) {
       //响应成功回调
       if (res.data.status === 10000) {
@@ -51,7 +51,7 @@ HTTP.post = function (url, data, callback) {
       }
     })
     .catch(function (err) {
-      alert(err);
+          tip(err)
     });
 };
 
@@ -64,7 +64,7 @@ HTTP.post = function (url, data, callback) {
  */
 HTTP.get = function (url, data, callback) {
   let params = {params: data}
-  instance.get(IP + url, params)
+  instance.get( url, params)
     .then(function (res) {
       //响应成功回调
       if (res.data.status === 10000) {
@@ -74,7 +74,7 @@ HTTP.get = function (url, data, callback) {
       }
     })
     .catch(function (err) {
-      alert(err);
+        tip(err)
     });
 };
 

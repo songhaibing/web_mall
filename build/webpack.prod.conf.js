@@ -77,7 +77,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     }),
     new PrerenderSPAPlugin({
       staticDir: path.join(__dirname, '../dist'),
-      routes: ['/'],
+      routes: ['/','/index'],
       // 这个很重要，如果没有配置这段，也不会进行预编译
       renderer: new Renderer({
         inject: {
