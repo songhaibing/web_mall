@@ -1,30 +1,30 @@
 <template>
-  <div class="login">
+  <div class="launch">
     <iframe
       :height="clientSize.Height"
       :width="clientSize.Width"
-      class="login_iframe"
+      class="launch_iframe"
       src="https://vr.chinavryan.com/p/561acf1bb77699d0?1552448984000"
     ></iframe>
-    <div :style="{ height: clientSize.Height + 'px', width: clientSize.Width + 'px'}" class="login_form">
+    <div :style="{ height: clientSize.Height + 'px', width: clientSize.Width + 'px'}" class="launch_form">
       <div class="hang_around_wrapper">
         <div class="hang_around">先逛逛</div>
       </div>
-      <div class="login_form_body">
+      <div class="launch_form_body">
         <div class="logo">VR眼</div>
         <div class="slogan">
-          <span>立即使用111</span>
-          <span>立即使用111</span>
+          <span>看在眼里</span>
+          <span>排在心里</span>
         </div>
       </div>
-      <router-link class="use_now" tag="div" to="/">立即使用111</router-link>
+      <router-link class="use_now" tag="div" to="/login">立即使用</router-link>
     </div>
   </div>
 </template>
 
 <script>
   export default {
-    name: "login",
+    name: "launch",
     data() {
       return {
         clientSize: {
@@ -43,24 +43,25 @@
 </script>
 
 <style lang="less" scoped>
-  .login {
+  .launch {
     font-size: 0.14rem;
     position: relative;
     height: 100%;
 
-    .login_iframe {
+    .launch_iframe {
       border-width: 0;
       position: absolute;
       left: 0;
       background: #fff;
     }
-    .login_form {
+    .launch_form {
       z-index: 1;
       position: absolute;
       width: 100%;
       color: #fff;
-      pointer-events: none;
+
       .hang_around_wrapper {
+        pointer-events: none;
         position: relative;
         display: flex;
         justify-content: flex-end;
@@ -77,7 +78,8 @@
           margin: 0.47rem 0.35rem 0 0;
         }
       }
-      .login_form_body {
+      .launch_form_body {
+        pointer-events: none;
         display: flex;
         flex-direction: column;
         align-items: center;
