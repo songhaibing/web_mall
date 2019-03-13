@@ -6,6 +6,7 @@ import router from './router'
 import FastClick from 'fastclick' // 引入FastClick
 import HTTP from './lib/httpRequest'
 import API from "./lib/api"
+import './config/rem'
 Vue.config.productionTip = false
 Vue.prototype.$HTTP = HTTP
 Vue.prototype.$API = API
