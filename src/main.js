@@ -8,9 +8,14 @@ import HTTP from './lib/httpRequest'
 import API from "./lib/api"
 import './config/rem'
 import './style/reset.less'
+import {Button,Row, Col,Swipe, SwipeItem,Lazyload,Field,NavBar} from 'vant'
+[Button,Row,Col,Swipe, SwipeItem,Lazyload,Field,NavBar].map(item => {
+  Vue.use(item)
+})
 Vue.config.productionTip = false
 Vue.prototype.$HTTP = HTTP
 Vue.prototype.$API = API
+
 // 使用 fastclick
 FastClick.attach(document.body);
 
