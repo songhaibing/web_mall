@@ -2,34 +2,23 @@
 import axios from 'axios'
 import IP from './address'
 import qs from 'qs'
+import { Toast } from 'vant';
+/**
+ * 提示函数
+ * 禁止点击蒙层、显示一秒后关闭
+ */
+const tip = msg => {
+  Toast({
+    message: msg,
+    duration: 1000,
+    forbidClick: true
+  });
+}
 
 
 let HTTP = {}
 // 使用由axios库提供的配置的默认值来创建axios实例
 let instance = axios.create()
-
-// 添加请求拦截器
-/*let beforeRequest = instance.interceptors.request.use(function (config) {
-  // 在发送请求之前做些什么
-  return config
-}, function (error) {
-  // 对请求错误做些什么
-  return Promise.reject(error)
-})
-
-// 添加响应拦截器
-let beforeResponse = instance.interceptors.response.use(function (response) {
-  // 对响应数据做点什么
-  return response
-}, function (error) {
-  // 对响应错误做点什么
-  return Promise.reject(error)
-})*/
-
-// 移除请求前置拦截器
-// axios.interceptors.request.eject(beforeRequest);
-// 移除相应前置拦截器
-// axios.interceptors.request.eject(beforeResponse);
 
 
 /**
@@ -51,7 +40,7 @@ HTTP.post = function (url, data, callback) {
       }
     })
     .catch(function (err) {
-      alert(err);
+          tip(err)
     });
 };
 
@@ -74,7 +63,7 @@ HTTP.get = function (url, data, callback) {
       }
     })
     .catch(function (err) {
-      alert(err);
+        tip(err)
     });
 };
 
