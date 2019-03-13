@@ -27,7 +27,7 @@
       </div>
       <div @click="loginSubmit()" class="login_submit">登录</div>
       <div class="login_tip" v-if="login_type === 1">未注册手机验证后自动登录</div>
-      <div class="login_tip" v-else>忘记密码</div>
+      <div class="login_tip" v-else @click="changePassword">忘记密码</div>
     </div>
     <div class="login_bottom_tip">
       注册即代表同意VR眼
@@ -61,12 +61,15 @@
           // return;
         }
         this.$HTTP.get(
-          this.$API.getCode,
+          this.HOST+this.$API.getCode,
           { type: 2, phone: this.phoneNumber },
           res => {
             console.log(res);
           }
         );
+      },
+      changePassword(){
+        this.$router.push('/password')
       },
       loginSubmit() {
         if (this.login_type === 1) {

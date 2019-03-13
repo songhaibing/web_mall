@@ -13,7 +13,6 @@ module.exports = {
       '/api': {
         target: 'https://vryan.v5kg.com/index.php/mobile',
         changeOrigin: true,
-        secure: false,
         pathRewrite: {
           '/api': ''
         }

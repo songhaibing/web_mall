@@ -14,6 +14,7 @@ import { Button, Row, Col, Swipe, SwipeItem, Lazyload, Field, NavBar,Toast } fro
 });
 Vue.config.productionTip = false;
 Vue.prototype.$HTTP = HTTP;
+Vue.prototype.HOST = '/api'
 
 Vue.prototype.$API = API;
 // 提示框
