@@ -15,7 +15,7 @@ const tip = msg => {
 };
 // 环境的切换
 if (process.env.NODE_ENV == 'development') {
-  axios.defaults.baseURL = '/api'; //开发环境
+  axios.defaults.baseURL = 'https://vryan.v5kg.com/index.php/mobile'; //开发环境
 } else if (process.env.NODE_ENV == 'debug') {
   axios.defaults.baseURL = ''; //测试环境
 } else if (process.env.NODE_ENV == 'production') {
