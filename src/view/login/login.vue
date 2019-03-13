@@ -11,12 +11,7 @@
       <div class="login_b_form">
         <div>
           <div class="login_label">手机号</div>
-          <input
-            class="login_input"
-            oninput="if(value.length>11)value=value.slice(0,11)"
-            type="number"
-            v-model="phoneNumber"
-          >
+          <input class="login_input" maxlength="11" oninput="value=value.replace(/[^\d]/g,'')" v-model="phoneNumber">
         </div>
         <div v-if="login_type === 2">
           <div class="login_label">密码</div>
