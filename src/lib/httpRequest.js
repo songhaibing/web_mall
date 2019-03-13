@@ -1,6 +1,5 @@
 'use strict'
 import axios from 'axios'
-import IP from './address'
 import qs from 'qs'
 import { Toast } from 'vant';
 /**
@@ -14,6 +13,18 @@ const tip = msg => {
     forbidClick: true
   });
 }
+// 环境的切换
+if (process.env.NODE_ENV == 'development') {
+  axios.defaults.baseURL = '/api';//开发环境
+} else if (process.env.NODE_ENV == 'debug') {
+  axios.defaults.baseURL = '';//测试环境
+} else if (process.env.NODE_ENV == 'production') {
+  axios.defaults.baseURL = 'http://api.123dailu.com/';//生产环境
+}
+
+// 请求超时时间
+axios.defaults.timeout = 10000;
+
 
 
 let HTTP = {}
@@ -30,7 +41,7 @@ let instance = axios.create()
  */
 HTTP.post = function (url, data, callback) {
   let params = qs.stringify(data)
-  instance.post(IP + url, params)
+  instance.post(url, params)
     .then(function (res) {
       //响应成功回调
       if (res.data.status === 10000) {
@@ -53,7 +64,7 @@ HTTP.post = function (url, data, callback) {
  */
 HTTP.get = function (url, data, callback) {
   let params = {params: data}
-  instance.get(IP + url, params)
+  instance.get( url, params)
     .then(function (res) {
       //响应成功回调
       if (res.data.status === 10000) {
