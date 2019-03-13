@@ -1,39 +1,26 @@
 <template>
   <div class="login">
     <div class="login_h">
-      <router-link class="iconfont icon-guanbi" tag="span" to="/"></router-link>
-      <span @click="login_type = 2" v-if="login_type === 1">密码登录</span>
-      <span @click="login_type = 1" v-else>免密登录</span>
+      <router-link class="iconfont icon-guanbi" tag="span" to="/login"></router-link>
     </div>
     <div class="login_b">
-      <div class="login_b_title" v-if="login_type === 1">免密登录</div>
-      <div class="login_b_title" v-else>密码登录</div>
+      <div class="login_b_title" >忘记密码</div>
       <div class="login_b_form">
-        <div>
           <div class="login_label">手机号</div>
           <input class="login_input" v-model="phoneNumber">
-        </div>
-        <div v-if="login_type === 2">
-          <div class="login_label">密码</div>
-          <input class="login_input" v-model="password">
-        </div>
-        <div v-else>
+        <div>
           <div class="login_label">验证码</div>
           <div class="auth_code">
             <input class="login_input" maxlength="6" v-model="authCode">
-            <div class="get_auth">获取验证码</div>
+            <div class="get_auth" @click="getCode">获取验证码</div>
           </div>
+        </div>
+        <div>
+          <div class="login_label1">密码</div>
+          <input class="login_input1" type="password" v-model="password">
         </div>
       </div>
       <div class="login_submit">登录</div>
-      <div class="login_tip" v-if="login_type === 1">未注册手机验证后自动登录</div>
-      <div class="login_tip" @click="changePassword" v-else>忘记密码</div>
-    </div>
-    <div class="login_bottom_tip">
-      注册即代表同意VR眼
-      <span>用户协议</span>
-      和
-      <span>隐私政策</span>
     </div>
   </div>
 </template>
@@ -43,27 +30,27 @@
     name: "login",
     data() {
       return {
-        clientSize: {
-          Height: 667,
-          Width: 375
-        },
-        login_type: 1, // 1为密码登录   2为免密登录
         phoneNumber: "",
         password: "",
         authCode: ""
       };
     },
     methods:{
-      changePassword(){
-        this.$router.push('/password')
+      getCode(){
+        const u_Reg=/^[1][3,4,5,7,8][0-9]{9}$/;
+        if(this.phoneNumber===''){
+          this.$Tip('请填写手机号')
+          return
+        }
+        if(u_Reg.test(this.phoneNumber)){
+
+        }else{
+          console.log(1112)
+          this.$Tip('手机号错误')
+        }
       }
     },
-    mounted() {
-      this.clientSize = {
-        Height: document.documentElement.clientHeight,
-        Width: document.documentElement.clientWidth
-      };
-    }
+    mounted() {}
   };
 </script>
 
@@ -71,6 +58,7 @@
   .login {
     padding: 0.5rem;
     color: #333333;
+    overflow-y: hidden;
     .login_h {
       display: flex;
       justify-content: space-between;
@@ -83,7 +71,7 @@
       }
     }
     .login_b {
-      margin-top: 1rem;
+      margin-top: 0.9rem;
       padding: 0.3rem;
       position: relative;
       .login_b_title {
@@ -123,7 +111,7 @@
         }
       }
       .login_submit {
-        margin-top: 0.37rem;
+        margin-top: 2.0rem;
         width: 4.15rem;
         height: 0.84rem;
         background: rgba(220, 49, 52, 1);
@@ -156,6 +144,17 @@
       span {
         text-decoration: underline;
       }
+    }
+    .login_label1 {
+      font-size: 0.36rem;
+      margin-bottom: 0.29rem;
+    }
+    .login_input1 {
+      width: 5.76rem;
+      height: 0.84rem;
+      border: 0.02rem solid rgba(220, 49, 52, 1);
+      border-radius: 0.42rem;
+      padding: 0 0.42rem;
     }
   }
 </style>
