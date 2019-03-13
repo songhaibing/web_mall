@@ -8,13 +8,26 @@ import HTTP from './lib/httpRequest';
 import API from './lib/api';
 import './config/rem';
 import './style/reset.less';
-import { Button, Row, Col, Swipe, SwipeItem, Lazyload, Field, NavBar } from 'vant';
-[Button, Row, Col, Swipe, SwipeItem, Lazyload, Field, NavBar].map(item => {
+import { Button, Row, Col, Swipe, SwipeItem, Lazyload, Field, NavBar,Toast } from 'vant';
+[Button, Row, Col, Swipe, SwipeItem, Lazyload, Field, NavBar,Toast].map(item => {
   Vue.use(item);
 });
 Vue.config.productionTip = false;
 Vue.prototype.$HTTP = HTTP;
+
 Vue.prototype.$API = API;
+// 提示框
+Vue.prototype.$Tip = msg => Toast({
+  message: msg,
+  forbidClick: true,
+  duration: 1500
+});
+// 加载提示
+Vue.prototype.$Loading = msg => Toast.loading({
+  message: msg,
+  forbidClick: true,
+  duration: 0
+});
 
 // 使用 fastclick
 FastClick.attach(document.body);
