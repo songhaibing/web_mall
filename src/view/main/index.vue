@@ -8,12 +8,12 @@
         <div class="tab_font">首页</div>
       </div>
       <div class="tab_contain" @click="clickIndexB">
-        <img class="index" v-if="tabIndex!=='tabB'" src="@/assets/tab/city@2x.png">
-        <img class="index" v-if="tabIndex==='tabB'" src="@/assets/tab/cityxz.png">
+        <img class="indexB" v-if="tabIndex!=='tabB'" src="@/assets/tab/city@2x.png">
+        <img class="indexB" v-if="tabIndex==='tabB'" src="@/assets/tab/cityxz.png">
         <div class="tab_font">城市</div>
       </div>
       <div class="tab_contain" @click="clickIndexC">
-        <img class="index"  src="@/assets/tab/VR@2x.png">
+        <img class="indexC"  src="@/assets/tab/VR@2x.png">
         <div class="tab_font">VR</div>
       </div>
       <div class="tab_contain" @click="clickIndexD">
@@ -22,8 +22,8 @@
         <div class="tab_font">即购</div>
       </div>
       <div class="tab_contain" @click="clickIndexE">
-        <img class="index" v-if="tabIndex!=='tabE'" src="@/assets/tab/my@2x.png">
-        <img class="index" v-if="tabIndex==='tabE'" src="@/assets/tab/myxz@2x.png">
+        <img class="indexE"  v-if="tabIndex!=='tabE'" src="@/assets/tab/my@2x.png">
+        <img class="indexE"   v-if="tabIndex==='tabE'" src="@/assets/tab/myxz@2x.png">
         <div class="tab_font">我的</div>
       </div>
     </div>
@@ -85,19 +85,36 @@
     position: fixed;
     bottom: 0;
     display: flex;
+    justify-content: space-around;
     width: 7.50rem;
     height: .98rem;
     background: rgba(255, 255, 255, 1);
     box-shadow: 0 0 .08rem 0 rgba(106, 106, 106, 0.17);
-
     .tab_contain {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-top: .16rem;
       .index {
         width: .38rem;
         height: .39rem;
       }
-
+      .indexB{
+        width: .41rem;
+        height: .39rem;
+      }
+      .indexC{
+        width: .47rem;
+        height: .34rem
+      }
+      .indexE{
+        width: .31rem;
+        height: .39rem
+      }
       .tab_font {
-        font-size: .20rem;
+        margin-top: .12rem;
+        font-size: .2rem;
         color: rgba(68, 68, 68, 1);
       }
     }
