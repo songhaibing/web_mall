@@ -45,18 +45,18 @@
         <img class="right-img" src="@/assets/member/right@2x.png">
       </div>
       <div class="single">
-        <img class="single-img" src="@/assets/member/dingdan@2x.png">
-        <div class="order_font">全部订单</div>
+        <img class="single-img" src="@/assets/member/shoucang@2x.png">
+        <div class="order_font">我的收藏</div>
         <img class="right-img" src="@/assets/member/right@2x.png">
       </div>
       <div class="single">
-        <img class="single-img" src="@/assets/member/dingdan@2x.png">
-        <div class="order_font">全部订单</div>
+        <img class="single-img" src="@/assets/member/dizhi@2x.png">
+        <div class="order_font">收货地址</div>
         <img class="right-img" src="@/assets/member/right@2x.png">
       </div>
       <div class="single">
-        <img class="single-img" src="@/assets/member/dingdan@2x.png">
-        <div class="order_font">全部订单</div>
+        <img class="single-img" src="@/assets/member/message@2x.png">
+        <div class="order_font">我的消息</div>
         <img class="right-img" src="@/assets/member/right@2x.png">
       </div>
 
