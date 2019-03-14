@@ -16,12 +16,11 @@
           </div>
         </div>
         <div>
-
           <div class="login_label1">密码</div>
           <input class="login_input1" type="password" v-model="password">
         </div>
       </div>
-      <div class="login_submit">登录</div>
+      <div class="login_submit" :class="{canLogin:isLogin}" @click="goLogin">登录</div>
     </div>
   </div>
 </template>
@@ -35,8 +34,13 @@
         phoneNumber: "",
         password: "",
         authCode: "",
-        code:'获取验证码'
+        code:'获取验证码',
       };
+    },
+    computed: {
+      isLogin: function () {
+        return this.phoneNumber.length===11&&this.authCode!==''&&this.password!==''
+      }
     },
     methods:{
       getCode(){
@@ -68,6 +72,20 @@
           });
           // 获取验证码
           this.$HTTP.get(this.HOST + this.$API.getCode,{ type: 2, phone: this.phoneNumber },function (res) {
+            console.log(res)
+          })
+        }
+      },
+      //登录
+      goLogin(){
+        if(this.isLogin){
+          const params={
+            captcha: this.authCode,
+            phone: this.phoneNumber,
+            password:this.password,
+            client:'wap'
+          }
+          this.$HTTP.post(this.HOST + this.$API.changePassword,params,function (res) {
             console.log(res)
           })
         }
@@ -139,8 +157,8 @@
         height: 0.84rem;
         background: rgba(220, 49, 52, 1);
         border: 0.01rem solid rgba(255, 63, 83, 1);
-        opacity: 0.6;
         border-radius: 0.42rem;
+        opacity: 0.6;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -148,6 +166,9 @@
         color: #fff;
         margin-left: 50%;
         transform: translateX(-50%);
+      }
+      .canLogin{
+        opacity: 1;
       }
       .login_tip {
         font-size: 0.24rem;

@@ -2,7 +2,8 @@ const API = {
   // login: 'user/login',
   getCode: '/Connect/get_sms_captcha', // 获取手机验证码,
   smsLogin: '/Connect/sms_login', // 手机验证码登录
-  login: 'login/index' // 普通登录
+  login: 'login/index', // 普通登录
+  changePassword:'/mobile/Connect/find_password',//重置密码
   // login/index--账号密码登录
   //  smslogin --动态密码登录
   // enterApplyFor:'enter/enterApplyFor',
