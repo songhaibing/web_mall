@@ -7,7 +7,9 @@
       </div>
       <div style="display: flex">
         <div class="user-message">
-          <div class="user_font">登录/注册</div>
+          <router-link to="/login">
+            <div class="user_font">登录/注册</div>
+          </router-link>
           <div class="user_des">登录后查看更多信息</div>
         </div>
         <div class="avatar">

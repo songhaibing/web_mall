@@ -38,9 +38,6 @@
         tabIndex: ''
       }
     },
-    activated(){
-      console.log(this.$route.path)
-    },
     created(){
         if(this.$route.path==='/main/index'){
           this.tabIndex = 'tabA';
