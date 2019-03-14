@@ -30,6 +30,12 @@ export default new Router({
       name: 'main',
       component: resolve => require(['@/view/main/index'], resolve),
       children: [
+        //首页
+        {
+          path: 'index',
+          name: 'index',
+          component: resolve => require(['@/view/main/index/index'], resolve),
+        },
         //我的
         {
           path: 'member',

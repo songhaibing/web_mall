@@ -1,7 +1,12 @@
 <template>
   <div>
     <router-view></router-view>
-    23233
+   <div>
+      <div class="tab_contain">
+        <img src="@/assets/tab/">
+        <div>首页</div>
+      </div>
+   </div>
   </div>
 </template>
 
@@ -11,5 +16,5 @@
   };
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 </style>
