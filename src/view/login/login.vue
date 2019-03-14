@@ -2,8 +2,8 @@
   <div class="login">
     <div class="login_h">
       <router-link class="iconfont icon-guanbi" tag="span" to="/"></router-link>
-      <span @click="login_type = 2" v-if="login_type === 1">密码登录</span>
-      <span @click="login_type = 1" v-else>免密登录</span>
+      <span @click="changeLoginType()" v-if="login_type === 1">密码登录</span>
+      <span @click="changeLoginType()" v-else>免密登录</span>
     </div>
     <div class="login_b">
       <div class="login_b_title" v-if="login_type === 1">免密登录</div>
@@ -22,7 +22,7 @@
           <div class="auth_code">
             <input class="login_input" maxlength="6" v-model="authCode">
             <div @click="getAuth()" class="get_auth" v-show="sendAuthCode">获取验证码</div>
-            <div class="get_auth" v-show="!sendAuthCode">{{authTime}}</div>
+            <div class="get_auth" v-show="!sendAuthCode">{{authTime}}后重试</div>
           </div>
         </div>
       </div>
@@ -50,12 +50,59 @@
         authCode: "",
         sendAuthCode: true,
         authTime: 60,
-        canLogin: true
+        canLogin: false
       };
     },
+    computed: {
+      login_mobile() {
+        const { phoneNumber, authCode } = this;
+        return {
+          phoneNumber,
+          authCode
+        };
+      },
+      login() {
+        const { phoneNumber, password } = this;
+        return {
+          phoneNumber,
+          password
+        };
+      }
+    },
+    watch: {
+      login_mobile: {
+        handler: function(val) {
+          if (val.phoneNumber.length === 11 && val.authCode.length > 0) {
+            this.canLogin = true;
+          } else {
+            this.canLogin = false;
+          }
+        },
+        deep: true
+      },
+      login: {
+        handler: function(val) {
+          if (val.phoneNumber.length === 11 && val.password) {
+            this.canLogin = true;
+          } else {
+            this.canLogin = false;
+          }
+        },
+        deep: true
+      }
+    },
     methods: {
+      changeLoginType() {
+        if (this.login_type === 1) {
+          this.authCode = "";
+          this.login_type = 2;
+        } else {
+          this.password = "";
+          this.login_type = 1;
+        }
+        this.canLogin = false;
+      },
       getAuth() {
-        console.log(this.phoneNumber.length);
         if (this.phoneNumber.length !== 11) {
           this.$Tip("请输入正确的手机号");
           return;
@@ -73,7 +120,7 @@
           this.HOST + this.$API.getCode,
           { type: 2, phone: this.phoneNumber },
           res => {
-            console.log(res);
+            // this.$Tip("已发送");
           }
         );
       },
@@ -81,13 +128,30 @@
         this.$router.push("/password");
       },
       loginSubmit() {
+        if (!this.canLogin) {
+          console.log("请输入完全");
+          return;
+        }
         if (this.login_type === 1) {
           // 免密登录
-
-          if (this.canLogin) {
-          }
+          let param = {
+            usermobile: this.phoneNumber,
+            mobilecode: this.authCode,
+            client: "wap"
+          };
+          this.$HTTP.post(this.HOST + this.$API.smsLogin, param, res => {
+            console.log("免密登录", res);
+          });
         } else {
           // 密码登录
+          let param = {
+            usermobile: this.phoneNumber,
+            password: this.password,
+            client: "wap"
+          };
+          this.$HTTP.post(this.HOST + this.$API.login, param, res => {
+            console.log("密码登录", res);
+          });
         }
       }
     },
@@ -132,7 +196,7 @@
         }
         .login_input {
           margin-bottom: 0.31rem;
-          width: 5.76rem;
+          width: 100%;
           height: 0.84rem;
           border: 0.02rem solid rgba(220, 49, 52, 1);
           border-radius: 0.42rem;

@@ -15,8 +15,7 @@ const tip = msg => {
     duration: 1000,
     forbidClick: true
   });
-}
-
+};
 
 /**
  * 请求失败后的错误统一处理
@@ -25,7 +24,6 @@ const tip = msg => {
 const errorHandle = (status, other) => {
   // 状态码判断
   switch (status) {
-
     // 401: 未登录状态，跳转登录页
     case 401:
       // toLogin();
@@ -42,10 +40,11 @@ const errorHandle = (status, other) => {
       break;
     default:
       console.log(other);
-  }}
+  }
+};
 
 // 创建axios实例
-var instance = axios.create({    timeout: 1000 * 12});
+var instance = axios.create({ timeout: 1000 * 12 });
 // 设置post请求头
 instance.defaults.headers.post['Content-Type'] = 'application/json';
 /**
@@ -62,12 +61,13 @@ instance.interceptors.request.use(
     // token && (config.headers.Authorization = token);
     // return config;
   },
-  error => Promise.error(error))
+  error => Promise.error(error)
+);
 
 // 响应拦截器
 instance.interceptors.response.use(
   // 请求成功
-  res => res.status === 200 ? Promise.resolve(res.data) : Promise.reject(res.data),
+  res => (res.status === 200 ? Promise.resolve(res.data) : Promise.reject(res.data)),
   // 请求失败
   error => {
     const { response } = error;
@@ -82,6 +82,7 @@ instance.interceptors.response.use(
       // 关于断网组件中的刷新重新获取数据，会在断网组件中说明
       // store.commit('UPDATE_isNetwork', false);
     }
-  });
+  }
+);
 
 export default instance;
