@@ -1,12 +1,12 @@
 <template>
   <div>
     <router-view></router-view>
-   <div>
+    <div>
       <div class="tab_contain">
-        <img src="@/assets/tab/">
+        <img src="@/assets/tab/index@2x.png">
         <div>首页</div>
       </div>
-   </div>
+    </div>
   </div>
 </template>
 

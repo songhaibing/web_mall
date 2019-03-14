@@ -145,10 +145,14 @@
             console.log("免密登录", res);
           });
         } else {
+          console.log(
+            this.password,
+            this.$DES.decryptDes(this.$DES.encryptDes(this.password))
+          );
           // 密码登录
           let param = {
             usermobile: this.phoneNumber,
-            password: this.password,
+            password: this.$DES.encryptDes(this.password),
             client: "wap"
           };
           this.$HTTP.post(this.HOST + this.$API.login, param, res => {
