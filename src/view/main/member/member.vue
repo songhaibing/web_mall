@@ -23,21 +23,21 @@
         <img class="pay_img" src="@/assets/member/daifukuan2@2x.png">
         <div class="pay_font">待付款</div>
       </div>
-      <div class="singe_contain1">
+      <div class="singe_contain">
         <img class="pay_img1" src="@/assets/member/daifahuo1@2x.png">
-        <div class="pay_font1">待发货</div>
+        <div class="pay_font">待发货</div>
       </div>
-      <div class="singe_contain2">
+      <div class="singe_contain">
         <img class="pay_img2" src="@/assets/member/daifukuan1@2x.png">
-        <div class="pay_font2">待收货</div>
+        <div class="pay_font">待收货</div>
       </div>
-      <div class="singe_contain3">
+      <div class="singe_contain">
         <img class="pay_img3" src="@/assets/member/xiazai@2x.png">
-        <div class="pay_font3">待评价</div>
+        <div class="pay_font">待评价</div>
       </div>
-      <div class="singe_contain4">
+      <div class="singe_contain">
         <img class="pay_img4" src="@/assets/member/tuikuan@2x.png">
-        <div class="pay_font4">售后</div>
+        <div class="pay_font">售后</div>
       </div>
     </div>
     <div class="card_contain">
