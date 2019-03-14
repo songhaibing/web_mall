@@ -23,6 +23,26 @@ export default new Router({
       path: '/password',
       name: 'password',
       component: resolve => require(['@/view/password/password'], resolve)
-    }
+    },
+    {
+      // 主页面
+      path: '/main',
+      name: 'main',
+      component: resolve => require(['@/view/main/index'], resolve),
+      children: [
+        //首页
+        {
+          path: 'index',
+          name: 'index',
+          component: resolve => require(['@/view/main/index/index'], resolve),
+        },
+        //我的
+        {
+          path: 'member',
+          name: 'member',
+          component: resolve => require(['@/view/main/member/member'], resolve),
+        }
+      ]
+    },
   ]
 });
