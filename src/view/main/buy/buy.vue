@@ -1,11 +1,10 @@
 <template>
-
-  <div>这是首页</div>
+    <div>立即购买</div>
 </template>
 
 <script>
     export default {
-        name: "index"
+        name: "buy"
     }
 </script>
 

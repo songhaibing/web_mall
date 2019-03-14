@@ -28,6 +28,7 @@ export default new Router({
       // 主页面
       path: '/main',
       name: 'main',
+      redirect: '/main/index',
       component: resolve => require(['@/view/main/index'], resolve),
       children: [
         //首页
@@ -35,6 +36,24 @@ export default new Router({
           path: 'index',
           name: 'index',
           component: resolve => require(['@/view/main/index/index'], resolve),
+        },
+        //城市
+        {
+          path: 'city',
+          name: 'city',
+          component: resolve => require(['@/view/main/city/city'], resolve),
+        },
+        //VR
+        {
+          path: 'VR',
+          name: 'VR',
+          component: resolve => require(['@/view/main/VR/VR'], resolve),
+        },
+        //即购
+        {
+          path: 'buy',
+          name: 'buy',
+          component: resolve => require(['@/view/main/buy/buy'], resolve),
         },
         //我的
         {
