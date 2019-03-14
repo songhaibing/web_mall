@@ -16,6 +16,7 @@
           </div>
         </div>
         <div>
+
           <div class="login_label1">密码</div>
           <input class="login_input1" type="password" v-model="password">
         </div>
