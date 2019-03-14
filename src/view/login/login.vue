@@ -140,6 +140,8 @@
             client: "wap"
           };
           this.$HTTP.post(this.HOST + this.$API.smsLogin, param, res => {
+            localStorage.setItem("key", res.key);
+            localStorage.setItem("username", res.username);
             console.log("免密登录", res);
           });
         } else {
