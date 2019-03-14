@@ -1,11 +1,10 @@
 <template>
-
-  <div>这是首页</div>
+    <div>这是城市页面</div>
 </template>
 
 <script>
     export default {
-        name: "index"
+        name: "city"
     }
 </script>
 
