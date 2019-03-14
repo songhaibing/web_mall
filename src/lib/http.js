@@ -32,7 +32,7 @@ const errorHandle = (status, other) => {
     // 清除token并跳转登录页
     case 403:
       tip('登录过期，请重新登录');
-      localStorage.removeItem('token');
+      localStorage.removeItem('key');
       break;
     // 404请求不存在
     case 404:

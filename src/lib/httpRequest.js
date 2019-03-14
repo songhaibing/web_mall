@@ -43,7 +43,7 @@ HTTP.post = function(url, data, callback) {
     .then(function(res) {
       //响应成功回调
       if (res.data.code === 10000) {
-        callback(res.data.data);
+        callback(res.data.result);
       } else {
         tip(res.data.message);
         // alert(ERROR_CODE[res.data.status]);
@@ -68,7 +68,7 @@ HTTP.get = function(url, data, callback) {
     .then(function(res) {
       //响应成功回调
       if (res.data.code === 10000) {
-        callback(res.data.data);
+        callback(res.data.result);
       } else {
         tip(res.data.message);
         // alert(ERROR_CODE[res.data.status]);
