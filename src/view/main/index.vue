@@ -13,8 +13,7 @@
         <div class="tab_font">城市</div>
       </div>
       <div class="tab_contain" @click="clickIndexC">
-        <img class="index" v-if="tabIndex!=='tabC'" src="@/assets/tab/VR@2x.png">
-        <img class="index" v-if="tabIndex==='tabC'" src="@/assets/tab/cityxz.png">
+        <img class="index"  src="@/assets/tab/VR@2x.png">
         <div class="tab_font">VR</div>
       </div>
       <div class="tab_contain" @click="clickIndexD">
@@ -23,8 +22,8 @@
         <div class="tab_font">即购</div>
       </div>
       <div class="tab_contain" @click="clickIndexE">
-        <img class="index" v-if="tabIndex!=='tabE'" src="@/assets/tab/class@2x.png">
-        <img class="index" v-if="tabIndex==='tabE'" src="@/assets/tab/classxz.png">
+        <img class="index" v-if="tabIndex!=='tabE'" src="@/assets/tab/my@2x.png">
+        <img class="index" v-if="tabIndex==='tabE'" src="@/assets/tab/myxz@2x.png">
         <div class="tab_font">我的</div>
       </div>
     </div>
