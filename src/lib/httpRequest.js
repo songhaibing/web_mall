@@ -9,7 +9,7 @@ import { Toast } from 'vant';
 const tip = msg => {
   Toast({
     message: msg,
-    duration: 8000,
+    duration: 1000,
     forbidClick: true
   });
 };
