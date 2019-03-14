@@ -12,7 +12,7 @@
           <div class="login_label">验证码</div>
           <div class="auth_code">
             <input class="login_input" maxlength="6" v-model="authCode">
-            <div class="get_auth" @click="getCode">获取验证码</div>
+            <div class="get_auth" @click="getCode">{{code}}</div>
           </div>
         </div>
         <div>
@@ -30,23 +30,45 @@
     name: "login",
     data() {
       return {
+        isCode:true,
         phoneNumber: "",
         password: "",
-        authCode: ""
+        authCode: "",
+        code:'获取验证码'
       };
     },
     methods:{
       getCode(){
+        if (!this.isCode) return;
         const u_Reg=/^[1][3,4,5,7,8][0-9]{9}$/;
         if(this.phoneNumber===''){
           this.$Tip('请填写手机号')
           return
         }
-        if(u_Reg.test(this.phoneNumber)){
-
-        }else{
-          console.log(1112)
-          this.$Tip('手机号错误')
+        if(!u_Reg.test(this.phoneNumber)){
+          this.$Tip('手机号格式错误')
+          return
+        }
+        if(this.code === '获取验证码'){
+          let time = 60;
+          this.isCode = false;
+          this.code = time + 's后重试';
+          const timer = setInterval(() => {
+            time--;
+            this.code = time + 's后重试';
+            if(time < 0){
+              this.code = '获取验证码';
+              clearInterval(timer);
+            }
+          }, 1000)
+          this.isCode = true;
+          this.$once('hook:beforeDestroy',() => {
+            clearInterval(timer);
+          });
+          // 获取验证码
+          this.$HTTP.get(this.HOST + this.$API.getCode,{ type: 2, phone: this.phoneNumber },function (res) {
+            console.log(res)
+          })
         }
       }
     },
