@@ -10,7 +10,9 @@
           <div class="user_font">登录/注册</div>
           <div class="user_des">登录后查看更多信息</div>
         </div>
-        <div class="avatar"></div>
+        <div class="avatar">
+          <img class="avatar-img" src="@/assets/member/wode@2x.png">
+        </div>
       </div>
 
     </div>
@@ -109,6 +111,13 @@
       height:1.40rem;
       background:rgba(255,255,255,1);
       border-radius:.70rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .avatar-img{
+        width: .79rem;
+        height: .81rem;
+      }
     }
   }
   .header_card {
