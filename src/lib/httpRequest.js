@@ -9,7 +9,7 @@ import { Toast } from 'vant';
 const tip = msg => {
   Toast({
     message: msg,
-    duration: 1000,
+    duration: 8000,
     forbidClick: true
   });
 };
@@ -42,7 +42,7 @@ HTTP.post = function(url, data, callback) {
     .post(url, params)
     .then(function(res) {
       //响应成功回调
-      if (res.data.status === 10000) {
+      if (res.data.code === 10000) {
         callback(res.data.data);
       } else {
         tip(res.data.message);
@@ -67,7 +67,7 @@ HTTP.get = function(url, data, callback) {
     .get(url, params)
     .then(function(res) {
       //响应成功回调
-      if (res.data.status === 10000) {
+      if (res.data.code === 10000) {
         callback(res.data.data);
       } else {
         tip(res.data.message);
