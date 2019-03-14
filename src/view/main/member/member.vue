@@ -5,10 +5,14 @@
         <img class="back_img" src="@/assets/member/back@2x.png">
         <img class="set_img" src="@/assets/member/shezhi@2x.png">
       </div>
-      <div class="user-message">
-        <div class="user_font">登录/注册</div>
-        <div class="user_des">登录后查看更多信息</div>
+      <div style="display: flex">
+        <div class="user-message">
+          <div class="user_font">登录/注册</div>
+          <div class="user_des">登录后查看更多信息</div>
+        </div>
+        <div class="avatar"></div>
       </div>
+
     </div>
     <div class="header_card">
       <div class="singe_contain">
@@ -31,6 +35,29 @@
         <img class="pay_img4" src="@/assets/member/tuikuan@2x.png">
         <div class="pay_font4">售后</div>
       </div>
+    </div>
+    <div class="card_contain">
+      <div class="single">
+        <img class="single-img" src="@/assets/member/dingdan@2x.png">
+        <div class="order_font">全部订单</div>
+        <img class="right-img" src="@/assets/member/right@2x.png">
+      </div>
+      <div class="single">
+        <img class="single-img" src="@/assets/member/dingdan@2x.png">
+        <div class="order_font">全部订单</div>
+        <img class="right-img" src="@/assets/member/right@2x.png">
+      </div>
+      <div class="single">
+        <img class="single-img" src="@/assets/member/dingdan@2x.png">
+        <div class="order_font">全部订单</div>
+        <img class="right-img" src="@/assets/member/right@2x.png">
+      </div>
+      <div class="single">
+        <img class="single-img" src="@/assets/member/dingdan@2x.png">
+        <div class="order_font">全部订单</div>
+        <img class="right-img" src="@/assets/member/right@2x.png">
+      </div>
+
     </div>
   </div>
 </template>
@@ -75,6 +102,13 @@
         font-size: 0.28rem;
         color: rgba(255, 255, 255, 1);
       }
+    }
+    .avatar{
+      margin-left: 2.17rem;
+      width:1.40rem;
+      height:1.40rem;
+      background:rgba(255,255,255,1);
+      border-radius:.70rem;
     }
   }
   .header_card {
@@ -159,6 +193,35 @@
         margin-left: 0.75rem;
         font-size: 0.24rem;
         color: rgba(51, 51, 51, 1);
+      }
+    }
+  }
+  .card_contain {
+    margin-top: 1.3rem;
+    margin-left: 0.32rem;
+    width: 6.86rem;
+    height: 3.63rem;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 0.1rem;
+    .single {
+      display: flex;
+      align-items: center;
+      border-bottom:.01rem solid rgba(242,242,242,1);
+      height: .92rem;
+      padding-left: .4rem;
+      .single-img {
+        width: 0.28rem;
+        height: 0.33rem;
+      }
+      .order_font {
+        padding-left: .19rem;
+        font-size: 0.26rem;
+        color: rgba(51, 51, 51, 1);
+      }
+      .right-img {
+        margin-left: 4.48rem;
+        width: 0.09rem;
+        height: 0.18rem;
       }
     }
   }
