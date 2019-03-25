@@ -54,7 +54,6 @@
         sendAuthCode: true,
         authTime: 60,
         canLogin: false,
-        img1:require('../../assets/avatar-error.webp')
       };
     },
     computed: {
