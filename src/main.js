@@ -36,6 +36,7 @@ Vue.prototype.$Loading = msg =>
 // 使用 fastclick
 FastClick.attach(document.body);
 
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

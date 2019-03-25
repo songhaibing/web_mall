@@ -1,6 +1,7 @@
 <template>
   <div class="login">
     <div class="login_h">
+      <div  :class="[isWebp? 'imgWeb':'imgJpg']" style="width: 2rem;height: 2rem"></div>
       <router-link class="iconfont icon-guanbi" tag="span" to="/"></router-link>
       <span @click="changeLoginType()" v-if="login_type === 1">密码登录</span>
       <span @click="changeLoginType()" v-else>免密登录</span>
@@ -40,8 +41,10 @@
 </template>
 
 <script>
+  import isWebp from '@/mixins/isWebp.js'
   export default {
     name: "login",
+    mixins:[isWebp],
     data() {
       return {
         login_type: 1, // 1为密码登录   2为免密登录
@@ -50,7 +53,8 @@
         authCode: "",
         sendAuthCode: true,
         authTime: 60,
-        canLogin: false
+        canLogin: false,
+        img1:require('../../assets/avatar-error.webp')
       };
     },
     computed: {
@@ -67,7 +71,7 @@
           phoneNumber,
           password
         };
-      }
+      },
     },
     watch: {
       login_mobile: {
@@ -92,6 +96,7 @@
       }
     },
     methods: {
+
       changeLoginType() {
         if (this.login_type === 1) {
           this.authCode = "";
@@ -173,4 +178,12 @@
 
 <style lang="less" scoped>
   @import "../../style/login.less";
+  .imgWeb{
+    background: url("../../assets/1.webp") 0 0 no-repeat;
+    background-size:2rem 2rem ;
+  }
+  .imgJpg{
+    background: url("../../assets/1.jpg") 0 0 no-repeat;
+    background-size:2rem 2rem ;
+  }
 </style>
